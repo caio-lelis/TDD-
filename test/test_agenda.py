@@ -35,7 +35,7 @@ class TestAgenda():
         resultado = agenda.adicionar_evento(nome_evento, inicio, fim)
         assert(resultado == "Evento adicionado com sucesso.")
 
-        resultado = agenda.remove_evento(nome_evento)
+        resultado = agenda.remover_evento(nome_evento)
         assert(resultado == "Evento removido com sucesso.")
 
     def test_mostrar_agenda(self):
@@ -53,5 +53,24 @@ class TestAgenda():
             lista_eventos += f"{evento['nome']}: {evento['inicio'].strftime('%Y-%m-%d %H:%M')} a {evento['fim'].strftime('%Y-%m-%d %H:%M')}\n"
 
         assert(lista_eventos == agenda.mostrar_agenda())
-    
 
+    def test_entradas_invalidas(self):
+        agenda = Agenda()
+        nome_evento = ""
+        inicio = "24-07-2024 10:00"
+        fim = "24-07-2024 11:00"
+        resultado = agenda.adicionar_evento(nome_evento, inicio, fim)
+        assert(resultado == "Falha ao adicionar evento.")
+
+        nome_evento2 = "Teste"
+        inicio2 = "2024-07-24 10:00"
+        fim2 = "2024-07-24 11:00"
+        resultado2 = agenda.adicionar_evento(nome_evento2, inicio2, fim2)
+        assert(resultado2 == "Evento adicionado com sucesso.")
+
+        resultado3 = agenda.remover_evento("")
+        assert(resultado3 == "Falha ao remover evento.")
+
+
+
+        
