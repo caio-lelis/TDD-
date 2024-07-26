@@ -27,7 +27,7 @@ class TestAgenda():
         resultado2 = agenda.adicionar_evento(nome_evento2, inicio2, fim2)
         assert(resultado2 == "Conflito de agendamento detectado.")
 
-    def test_remove_evento(self):
+    def test_remover_evento(self):
         agenda = Agenda()
         nome_evento = "Final dos 100m"
         inicio = "2024-07-24 10:00"
@@ -44,9 +44,14 @@ class TestAgenda():
         inicio = "2024-07-24 10:00"
         fim = "2024-07-24 11:00"
         resultado = agenda.adicionar_evento(nome_evento, inicio, fim)
+        assert(resultado == "Evento adicionado com sucesso.")
 
+        lista_eventos = str()
         eventos = agenda.eventos
+
         for evento in eventos:
-            assert(f"{evento['nome']}: {evento['inicio'].strftime('%Y-%m-%d %H:%M')} a {evento['fim'].strftime('%Y-%m-%d %H:%M')}\n" == agenda.mostrar_agenda())
+            lista_eventos += f"{evento['nome']}: {evento['inicio'].strftime('%Y-%m-%d %H:%M')} a {evento['fim'].strftime('%Y-%m-%d %H:%M')}\n"
+
+        assert(lista_eventos == agenda.mostrar_agenda())
     
 
